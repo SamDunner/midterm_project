@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Midterm Maps</title>
+    <title>Node Skeleton</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-    <!-- External Js -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30sSupKcH81MFrDMtaX_cm21V18JR18Y&callback=initMap"
-    async defer></script>
-
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
+   <style>
+        html, body {
+          height: 800px;
+          width: 800px;
+          margin: 0;
+          padding: 0;
+        }
+        #map {
+          height: 100%;
+        }
+      </style>
   </head>
   <body>
     <div id="map"></div>
     <div id="capture"></div>
-
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 49.2827 , lng: -123.1207},
+          zoom: 15
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30sSupKcH81MFrDMtaX_cm21V18JR18Y&callback=initMap"
+    async defer></script>
   </body>
 
 </html>
