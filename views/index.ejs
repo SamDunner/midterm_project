@@ -16,7 +16,9 @@
 
 
     <button class="btn" id="toggle_list" aria-hidden="true" type="button">My Lists</button>
-    <img src="/images/plus.svg" id="saveLocation">
+    <div class="savePosition" onclick="savePosition()">
+      <img  src="/images/plus.svg" >
+    </div>
 
 
     <div id="map"></div>
@@ -25,15 +27,16 @@
     async defer></script>
 
     <input type="text" id="name" placeholder="Name"><br>
-    <select id="Rating">
+    <select id="rating">
       <option disabled selected value>Rating</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5</option>
+    </select>
 
-    <select id="Style">
+    <select id="style">
       <option disabled selected value>Style</option>
       <option value="mexican">Mexican</option>
       <option value="asian varied">Asian varied</option>
