@@ -34,11 +34,14 @@ function setPosition(loc) {
 function initMap() {
   getPosition();
 
-
-  google.maps.event.addListener(map, 'click', function(event) {
+var p = new Promise(getPosition);
+p.then(function(map) {
+  google.maps.event.addListener('click', map, function(event) {
     addMarker(event.latLng, map);
   });
-
+}).catch(function(e) {
+  console.log("Something went wrong", e);
+});
 }
 
 // function initMap() {
