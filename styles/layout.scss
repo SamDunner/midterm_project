@@ -6,7 +6,8 @@ body {
   }
 }
 
-#map {
+@media (min-width: 1000px) {
+  #map {
   height: 800px;
   width: 800px;
   padding: 0;
@@ -14,4 +15,29 @@ body {
   margin: 0 auto;
   margin-top: 200px;
   border-radius: 10px;
+  }
+}
+
+@media (max-width: 999px) {
+  #map {
+  height: 600px;
+  width: 600px;
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  margin-top: 200px;
+  border-radius: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  #map {
+  height: 300px;
+  width: 300px;
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  margin-top: 200px;
+  border-radius: 10px;
+  }
 }
