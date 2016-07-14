@@ -16,20 +16,45 @@ $(() => {
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
 
-function initMap() {
-  var vancouver = {lat: 49.2827 , lng: -123.1207};
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    center: vancouver
-  });
 
-  // This event listener calls addMarker() when the map is clicked.
+var map;
+
+function getPosition() {
+  navigator.geolocation.getCurrentPosition(setPosition);
+}
+
+function setPosition(loc) {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: {lat: loc.coords.latitude, lng: loc.coords.longitude}
+  });
+  addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
+}
+
+function initMap() {
+  getPosition();
+
+
   google.maps.event.addListener(map, 'click', function(event) {
     addMarker(event.latLng, map);
   });
-    addMarker(vancouver, map);
-  // Add a marker at the center of the map.
+
 }
+
+// function initMap() {
+//   var vancouver = {lat: 49.2827 , lng: -123.1207};
+//   var map = new google.maps.Map(document.getElementById('map'), {
+//     zoom: 15,
+//     center: vancouver
+//   });
+
+//   // This event listener calls addMarker() when the map is clicked.
+//   google.maps.event.addListener(map, 'click', function(event) {
+//     addMarker(event.latLng, map);
+//   });
+//     addMarker(vancouver, map);
+//   // Add a marker at the center of the map.
+// }
 
 // Adds a marker to the map.
 function addMarker(location, map) {
