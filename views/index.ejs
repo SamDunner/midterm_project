@@ -18,10 +18,29 @@
     <button class="btn" id="toggle_list" aria-hidden="true" type="button">My Lists</button>
     <img src="/images/plus.svg" id="saveLocation">
 
+
     <div id="map"></div>
     <div id="capture"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30sSupKcH81MFrDMtaX_cm21V18JR18Y&callback=initMap"
     async defer></script>
+
+    <input type="text" id="name" placeholder="Name"><br>
+    <select id="Rating">
+      <option disabled selected value>Rating</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+
+    <select id="Style">
+      <option disabled selected value>Style</option>
+      <option value="mexican">Mexican</option>
+      <option value="asian varied">Asian varied</option>
+      <option value="thai">Thai</option>
+      <option value="fastFood">Fast food</option>
+      <option value="other">Other</option>
+    </select>
 
     <div class="lists">
       <h1>FAVOURITE PLACES</h1>

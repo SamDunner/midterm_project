@@ -53,6 +53,18 @@ function addMarker(location, map) {
 });
 }
 
+function guardar() {
+  var name = document.getElementById('name').value;
+  var price = document.getElementById('price').value;
+  var style = document.getElementById('style').value;
+  var rating = document.getElementById('rating').value;
+  var latlong = localStorage.getItem('latlong');
+
+  localStorage.setItem('name'+contador, name);
+  localStorage.setItem('price'+contador, price);
+  localStorage.setItem('style'+contador, style);
+}
+
 
 
 
