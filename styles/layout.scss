@@ -52,3 +52,13 @@ body {
   margin-top: 10%;
   margin-left: 20%;
 }
+
+img {
+  position: absolute;
+  float: right;
+  margin-left: 71%;
+  margin-top: 30%;
+  width:115px;
+  height:115px;
+  z-index: 9999;
+}
