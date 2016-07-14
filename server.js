@@ -28,11 +28,18 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // Home page
-app.get("/home", (req, res) => {
-  res.render("index");
-});
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+// Main page
+app.get("/main", (req, res) => {
+  res.render("main");
+});
+
+// Profile page
+app.get("/user/1/profile", (req, res) => {
+  res.render("profile");
 });
 
 app.listen(PORT, () => {
