@@ -27,9 +27,8 @@ function initMap() {
   google.maps.event.addListener(map, 'click', function(event) {
     addMarker(event.latLng, map);
   });
-
+    addMarker(vancouver, map);
   // Add a marker at the center of the map.
-  addMarker(vancouver, map);
 }
 
 // Adds a marker to the map.
@@ -39,7 +38,23 @@ function addMarker(location, map) {
   var marker = new google.maps.Marker({
     position: location,
     label: labels[labelIndex++ % labels.length],
-    map: map
+    map: map,
+    draggable: true
   });
+
+  google.maps.event.addListener(marker, 'dragend', function (event)
+{
+    var point = marker.getPosition();
+    map.panTo(point);
+
+    // save location to local storage
+    localStorage['lastLat'] = point.lat();
+    localStorage['lastLng'] = point.lng();
+});
 }
+
+
+
+
+
 
