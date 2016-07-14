@@ -16,7 +16,7 @@
 
 
     <button class="btn" id="toggle_list" aria-hidden="true" type="button">My Lists</button>
-    <div class="savePosition" onclick="savePosition()">
+    <div class="savePosition" onclick="savePosition()" aria-hidden="true">
       <img  src="/images/plus.svg" >
     </div>
 
@@ -26,6 +26,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30sSupKcH81MFrDMtaX_cm21V18JR18Y&callback=initMap"
     async defer></script>
 
+    <div id="form">
     <input type="text" id="name" placeholder="Name"><br>
     <select id="rating">
       <option disabled selected value>Rating</option>
@@ -44,6 +45,7 @@
       <option value="fastFood">Fast food</option>
       <option value="other">Other</option>
     </select>
+    </div>
 
     <div class="lists">
       <h1>FAVOURITE PLACES</h1>
