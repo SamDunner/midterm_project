@@ -1,6 +1,5 @@
 body {
   background-color: #EEE;
-
   h1 {
     color: #244751;
   }
@@ -40,4 +39,16 @@ body {
   margin-top: 200px;
   border-radius: 10px;
   }
+}
+
+.lists {
+  display: none;
+  margin-left: 40%;
+}
+
+.btn {
+  position: absolute;
+  float: left;
+  margin-top: 10%;
+  margin-left: 20%;
 }

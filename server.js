@@ -32,6 +32,12 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.put("/", (req, res) => {
+
+    res.redirect("/");
+  });
+
+
 // Main page
 app.get("/main", (req, res) => {
   res.render("main");

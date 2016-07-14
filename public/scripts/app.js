@@ -7,9 +7,11 @@ $(() => {
       $("<div>").text(user.name).appendTo($("body"));
     }
   });
+  $("#toggle_list").click(function() {
+    $('.lists').toggle("slow");
+  });
 
 });
-
 
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
