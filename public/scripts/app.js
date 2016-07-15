@@ -1,12 +1,4 @@
 $(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });
   $("#toggle_list").click(function() {
     $('.lists').toggle("slow");
   });
@@ -80,6 +72,22 @@ function savePosition() {
   var point = marker.getPosition();
   map.panTo(point);
 
+
+// POST data to external database
+  $.ajax({
+    type: "POST",
+    url: "/maps/:id",
+    data: {
+      name: name.value,
+      style: style.value,
+      rating: rating.value,
+      latitude: point.lat(),
+      longitude: point.lng()
+    },
+    success: function (data) {
+    }
+  });
+
   // save location to local storage
   localStorage.setItem('lastLat', point.lat());
   localStorage.setItem('lastLng', point.lng());
@@ -88,7 +96,6 @@ function savePosition() {
   localStorage.setItem('style', style.value);
   localStorage.setItem('rating', rating.value);
 
-  console.log(marker.getPosition().lat());
 
   $('.locationInputs').toggle("fast");
 };
