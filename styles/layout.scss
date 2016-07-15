@@ -93,3 +93,9 @@ img {
   z-index: 9999;
   cursor: pointer;
 }
+
+img:active {
+  transition: 2em;
+  opacity: 0.8;
+  margin-top: 30.2%;
+}
