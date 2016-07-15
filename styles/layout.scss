@@ -12,6 +12,8 @@ body {
   background-color: #b3d1ff;
   color: #e8fdff;
   padding: 0 2em;
+  position: fixed;
+  z-index: 2;
 }
 
 @media (min-width: 1000px) {
@@ -90,7 +92,7 @@ img {
   margin-top: 20%;
   width:115px;
   height:115px;
-  z-index: 9999;
+  z-index: 1;
   cursor: pointer;
 }
 
