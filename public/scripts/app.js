@@ -15,27 +15,21 @@
       zoom: 15,
       center: {lat: loc.coords.latitude, lng: loc.coords.longitude}
     });
+    $.getJSON(location.pathname + "data_points", function(points){
+      points.forEach(function(point){
+        addMarker({lat: point.latitude, lng: point.longitude}, map);
+      });
+    });
     addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
 
   }
 
   function initMap() {
     getPosition();
-    var p = new Promise(getPosition);
-    p.then(function(map) {
-      google.maps.event.addListener('click', map, function(event) {
-        addMarker(event.latLng, map);
-
-      });
-    }).catch(function(e) {
-      console.log("Something went wrong", e);
-
-    });
   }
 
   // Adds a marker to the map.
   function addMarker(location, map) {
-
     marker = new google.maps.Marker({
       position: location,
       label: labels[labelIndex++ % labels.length],
@@ -45,6 +39,8 @@
   }
 
   function savePosition() {
+          console.log("save pos");
+
     var name = document.getElementById('name');
     var type = document.getElementById('type');
     var rating = document.getElementById('rating');
@@ -84,6 +80,12 @@
         addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
       })
     });
+
+
+
+
+    $(".btn_submit").click(savePosition);
+
 
     $('#name_form').submit(function(event) {
       event.preventDefault();
