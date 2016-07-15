@@ -34,23 +34,43 @@ app.use("/api/users", usersRoutes(knex));
 
 
 app.get("/", (req, res) => {
-  knex("users")
-  .insert({})
-  .returning("ID")
-  .then((results) => {
-    res.render("home", {username: req.cookies[username]});
+  if (req.cookies["ID"]) {
+    knex("users")
+    .select('name')
+    .where('ID', req.cookies['ID'])
+    .then((results) => {
+      res.render("home", {user: {name: results[0].name}});
+    });
+  } else {
+    res.render("home", {user: null});
   }
 });
 
 //log-in & log-out
+app.post("/register", (req, res) => {
+  knex("users")
+  .insert({name: req.body.name,
+          password: req.body.password})
+  .returning("ID")
+  .then((results) => {
+    if (results.length === 1) {
+      res.cookie("ID", results[0]);
+      res.redirect("/");
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
+
 app.post("/login", (req, res) => {
   knex("users")
   .select("ID")
-  .where({username: req.body.username,
+  .where({name: req.body.name,
           password: req.body.password})
   .then((results) => {
     if (results.length === 1) {
-      res.cookie("ID", results[0].id);
+      res.cookie("ID", results[0].ID);
       res.redirect("/");
     } else {
       res.redirect("/");
@@ -59,7 +79,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  res.clearCookie("ID", "/login")
+  res.clearCookie("ID")
   res.redirect("/");
 });
 
