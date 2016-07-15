@@ -31,19 +31,27 @@ app.use(cookieParser());
 app.use("/api/users", usersRoutes(knex));
 
 
-
-
-app.get("/", (req, res) => {
+const getUserName = function(req, cb) {
   if (req.cookies["ID"]) {
     knex("users")
     .select('name')
     .where('ID', req.cookies['ID'])
     .then((results) => {
-      res.render("home", {user: {name: results[0].name}});
+      cb(results[0].name);
     });
   } else {
-    res.render("home", {user: null});
+    cb();
   }
+}
+
+app.get("/", (req, res) => {
+  getUserName(req, (name) => {
+    if (name) {
+      res.render("create", {user: {name: name}});
+    } else {
+      res.render("home", {user: null});
+    }
+  })
 });
 
 //log-in & log-out
