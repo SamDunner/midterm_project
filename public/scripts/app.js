@@ -10,7 +10,10 @@ $(() => {
   $("#toggle_list").click(function() {
     $('.lists').toggle("slow");
   });
+     $("#savePosition").click(function() {
+    $('.locationInputs').toggle("fast");
 
+});
 });
 
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -18,6 +21,7 @@ var labelIndex = 0;
 
 
 var map;
+var marker;
 
 function getPosition() {
   navigator.geolocation.getCurrentPosition(setPosition);
@@ -34,51 +38,37 @@ function setPosition(loc) {
 function initMap() {
   getPosition();
 
-var p = new Promise(getPosition);
-p.then(function(map) {
-  google.maps.event.addListener('click', map, function(event) {
-    addMarker(event.latLng, map);
+  var p = new Promise(getPosition);
+  p.then(function(map) {
+    google.maps.event.addListener('click', map, function(event) {
+      addMarker(event.latLng, map);
+    });
+  }).catch(function(e) {
+    console.log("Something went wrong", e);
   });
-}).catch(function(e) {
-  console.log("Something went wrong", e);
-});
 }
-
-// function initMap() {
-//   var vancouver = {lat: 49.2827 , lng: -123.1207};
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 15,
-//     center: vancouver
-//   });
-
-//   // This event listener calls addMarker() when the map is clicked.
-//   google.maps.event.addListener(map, 'click', function(event) {
-//     addMarker(event.latLng, map);
-//   });
-//     addMarker(vancouver, map);
-//   // Add a marker at the center of the map.
-// }
 
 // Adds a marker to the map.
 function addMarker(location, map) {
   // Add the marker at the clicked location, and add the next-available label
   // from the array of alphabetical characters.
-  var marker = new google.maps.Marker({
+  marker = new google.maps.Marker({
     position: location,
     label: labels[labelIndex++ % labels.length],
     map: map,
     draggable: true
   });
 
-  google.maps.event.addListener(marker, 'dragend', function (event)
-{
-    var point = marker.getPosition();
-    map.panTo(point);
+//   google.maps.event.addListener(marker, 'dragend', function (event){
+//     var point = marker.getPosition();
+//     map.panTo(point);
 
-    // save location to local storage
-    localStorage['lastLat'] = point.lat();
-    localStorage['lastLng'] = point.lng();
-});
+//     // save location to local storage
+//     localStorage['lastLat'] = point.lat();
+//     localStorage['lastLng'] = point.lng();
+//   });
+// }
+
 }
 
 function savePosition() {
@@ -86,11 +76,20 @@ function savePosition() {
   var style = document.getElementById('style');
   var rating = document.getElementById('rating');
 
+  var point = marker.getPosition();
+  map.panTo(point);
+
+  // save location to local storage
+  localStorage.setItem('lastLat', point.lat());
+  localStorage.setItem('lastLng', point.lng());
+
   localStorage.setItem('name', name.value);
   localStorage.setItem('style', style.value);
   localStorage.setItem('rating', rating.value);
 
-}
+  console.log(marker.getPosition().lat());
+
+};
 
 
 
