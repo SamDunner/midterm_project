@@ -55,11 +55,18 @@ app.post("/maps", (req, res) => {
   });
 });
 
-app.put("/maps/:id/title", ())
+app.put("/maps/:id/name", (req, res) => {
+  knex("maps")
+  .where("ID", req.params.id)
+  .update({name: req.body.name})
+  .then((results) => {
+    res.end();
+  });
+});
 
 //edit map
 app.get("/maps/:id", (req, res) => {
-  res.render("test");
+  res.render("index");
 });
 
 app.get("/maps/:id/data", (req, res) => {
