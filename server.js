@@ -28,22 +28,10 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.put("/", (req, res) => {
-
-    res.redirect("/");
-  });
-
-
-
-
-app.get("/home", (req, res) => {
   res.render("home");
-
 });
 
+//creates new map
 app.post("/maps", (req, res) => {
   console.log("/maps")
   knex("maps")
@@ -55,6 +43,7 @@ app.post("/maps", (req, res) => {
   });
 });
 
+//gives map a name TODO: put name above map
 app.put("/maps/:id/name", (req, res) => {
   knex("maps")
   .where("ID", req.params.id)
@@ -66,7 +55,7 @@ app.put("/maps/:id/name", (req, res) => {
 
 //edit map
 app.get("/maps/:id", (req, res) => {
-  res.render("index");
+  res.render("create_new_map");
 });
 
 app.get("/maps/:id/data", (req, res) => {
