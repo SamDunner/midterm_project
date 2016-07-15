@@ -89,6 +89,7 @@ function savePosition() {
 
   console.log(marker.getPosition().lat());
 
+    $('.locationInputs').toggle("fast");
 };
 
 
