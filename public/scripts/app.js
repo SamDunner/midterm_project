@@ -1,11 +1,16 @@
+var map;
+
 $(() => {
   $("#toggle_list").click(function() {
-    $('.lists').toggle("slow");
+    $('.locationInputs').toggle("slow");
   });
-     $("#savePosition").click(function() {
-    $('.locationInputs').toggle("fast");
-});
 
+  $("#plus").click(function() {
+    navigator.geolocation.getCurrentPosition(function(loc) {
+      //change position to center of map insted of current location
+      addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
+    })
+  });
 
   $('#name_form').submit(function(event) {
     event.preventDefault();
@@ -22,7 +27,7 @@ $(() => {
 
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
-var map;
+
 var marker;
 
 function getPosition() {
@@ -85,6 +90,7 @@ function savePosition() {
       longitude: point.lng()
     },
     success: function (data) {
+    console.log(data);
     }
   });
 
