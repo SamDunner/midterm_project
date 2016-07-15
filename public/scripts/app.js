@@ -13,6 +13,19 @@ $(() => {
      $("#savePosition").click(function() {
     $('.locationInputs').toggle("fast");
 });
+
+
+  $('#name_form').submit(function(event) {
+    event.preventDefault();
+    $.ajax({
+        url: $(this).attr('action'),
+        type: $(this).attr('method'),
+        data: $(this).serialize(),
+        success: function(html) {
+
+        }
+    });
+  });
 });
 
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
