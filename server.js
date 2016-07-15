@@ -51,13 +51,15 @@ app.post("/maps", (req, res) => {
   .returning("ID")
   .then((results) => {
     const id = results[0];
-    res.redirect(`/maps/${id}`);
+    res.redirect(`/maps/${id}/`);
   });
 });
 
+app.put("/maps/:id/title", ())
+
 //edit map
 app.get("/maps/:id", (req, res) => {
-  res.render("index");
+  res.render("test");
 });
 
 app.get("/maps/:id/data", (req, res) => {

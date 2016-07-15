@@ -1,22 +1,28 @@
-var map;
-
 $(() => {
   $("#toggle_list").click(function() {
-    $('.locationInputs').toggle("fast");
+    $('.lists').toggle("slow");
   });
+     $("#savePosition").click(function() {
+    $('.locationInputs').toggle("fast");
+});
 
-  $("#plus").click(function() {
-    console.log("ASD")
-    navigator.geolocation.getCurrentPosition(function(loc) {
-      //change position to center of map insted of current location
-      addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
-    })
+
+  $('#name_form').submit(function(event) {
+    event.preventDefault();
+    $.ajax({
+        url: $(this).attr('action'),
+        type: $(this).attr('method'),
+        data: $(this).serialize(),
+        success: function(html) {
+
+        }
+    });
   });
 });
 
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
-
+var map;
 var marker;
 
 function getPosition() {
@@ -93,3 +99,15 @@ function savePosition() {
 
   $('.locationInputs').toggle("fast");
 };
+
+// Add multiple markers
+// google.maps.event.addListener(map, 'click', function(event) {
+//   addMarker(event.latLng);
+// });
+
+
+
+
+
+
+
