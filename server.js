@@ -2,12 +2,14 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT         = process.env.PORT || 8080;
+const ENV          = process.env.ENV || "development";
+const express      = require("express");
+const bodyParser   = require("body-parser");
+const cookieParser = require("cookie-parser");
+const sass         = require("node-sass-middleware");
+const app          = express();
+
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -23,12 +25,42 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(cookieParser());
 
 // Users JSON api
 app.use("/api/users", usersRoutes(knex));
 
+
+
+
 app.get("/", (req, res) => {
-  res.render("home");
+  knex("users")
+  .insert({})
+  .returning("ID")
+  .then((results) => {
+    res.render("home", {username: req.cookies[username]});
+  }
+});
+
+//log-in & log-out
+app.post("/login", (req, res) => {
+  knex("users")
+  .select("ID")
+  .where({username: req.body.username,
+          password: req.body.password})
+  .then((results) => {
+    if (results.length === 1) {
+      res.cookie("ID", results[0].id);
+      res.redirect("/");
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
+app.post("/logout", (req, res) => {
+  res.clearCookie("ID", "/login")
+  res.redirect("/");
 });
 
 //creates new map
