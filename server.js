@@ -159,4 +159,13 @@ app.post("/maps/:map_id/data_points", (req, res) => {
   });
 });
 
+app.get("/maps/:map_id/data_points", (req, res) => {
+  knex("data_points")
+  .select("*")
+  .where("map_id", req.params.map_id)
+  .then((results) => {
+    res.json(results);
+  });
+});
+
 
