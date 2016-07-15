@@ -6,8 +6,7 @@
     <% include partials/_bootstrap %>
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
+
 
 
 
@@ -28,8 +27,7 @@
 
     <div id="map"></div>
     <div id="capture"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30sSupKcH81MFrDMtaX_cm21V18JR18Y&callback=initMap"
-    async defer></script>
+
 
     <div class="locationInputs">
     <h1>Save location</h1>
@@ -53,8 +51,9 @@
       <button class="btn_submit" type="button" onclick="savePosition()" aria-hidden="true">Submit</button>
     </div>
 
-
-
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30sSupKcH81MFrDMtaX_cm21V18JR18Y&callback=initMap"></script>
 
   </body>
 
