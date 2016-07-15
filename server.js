@@ -115,7 +115,13 @@ app.put("/maps/:id/name", (req, res) => {
 
 //edit map
 app.get("/maps/:id", (req, res) => {
-  res.render("create_new_map");
+  getUserName(req, (name) => {
+    if (name) {
+      res.render("create_new_map", {user: {name: name}});
+    } else {
+      res.render("home", {user: null});
+    }
+  });
 });
 
 app.get("/maps/:id/data", (req, res) => {
