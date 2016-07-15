@@ -71,7 +71,7 @@ function addMarker(location, map) {
 
 function savePosition() {
   var name = document.getElementById('name');
-  var style = document.getElementById('style');
+  var type = document.getElementById('type');
   var rating = document.getElementById('rating');
 
   var point = marker.getPosition();
@@ -81,10 +81,10 @@ function savePosition() {
 // POST data to external database
   $.ajax({
     type: "POST",
-    url: "/maps/:id",
+    url: location.pathname + "data_points",
     data: {
       name: name.value,
-      style: style.value,
+      type: type.value,
       rating: rating.value,
       latitude: point.lat(),
       longitude: point.lng()
@@ -95,21 +95,17 @@ function savePosition() {
   });
 
   // save location to local storage
-  localStorage.setItem('lastLat', point.lat());
-  localStorage.setItem('lastLng', point.lng());
+  // localStorage.setItem('lastLat', point.lat());
+  // localStorage.setItem('lastLng', point.lng());
 
-  localStorage.setItem('name', name.value);
-  localStorage.setItem('style', style.value);
-  localStorage.setItem('rating', rating.value);
+  // localStorage.setItem('name', name.value);
+  // localStorage.setItem('style', style.value);
+  // localStorage.setItem('rating', rating.value);
 
 
   $('.locationInputs').toggle("fast");
 };
 
-// Add multiple markers
-// google.maps.event.addListener(map, 'click', function(event) {
-//   addMarker(event.latLng);
-// });
 
 
 
