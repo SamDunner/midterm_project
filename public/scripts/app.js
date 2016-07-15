@@ -1,110 +1,106 @@
-var map;
+(function() {
+  var map;
+  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var labelIndex = 0;
 
-$(() => {
-  $("#toggle_list").click(function() {
-    $('.locationInputs').toggle("slow");
-  });
+  var marker;
 
-  $("#plus").click(function() {
-    navigator.geolocation.getCurrentPosition(function(loc) {
-      //change position to center of map insted of current location
-      addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
-    })
-  });
+  function getPosition() {
+    navigator.geolocation.getCurrentPosition(setPosition);
+  }
 
-  $('#name_form').submit(function(event) {
-    event.preventDefault();
+  function setPosition(loc) {
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: {lat: loc.coords.latitude, lng: loc.coords.longitude}
+    });
+    addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
+
+  }
+
+  function initMap() {
+    getPosition();
+    var p = new Promise(getPosition);
+    p.then(function(map) {
+      google.maps.event.addListener('click', map, function(event) {
+        addMarker(event.latLng, map);
+
+      });
+    }).catch(function(e) {
+      console.log("Something went wrong", e);
+
+    });
+  }
+
+  // Adds a marker to the map.
+  function addMarker(location, map) {
+
+    marker = new google.maps.Marker({
+      position: location,
+      label: labels[labelIndex++ % labels.length],
+      map: map,
+      draggable: true
+    });
+  }
+
+  function savePosition() {
+    var name = document.getElementById('name');
+    var type = document.getElementById('type');
+    var rating = document.getElementById('rating');
+
+    var point = marker.getPosition();
+    map.panTo(point);
+
+
+  // POST data to external database
     $.ajax({
-        url: $(this).attr('action'),
-        type: $(this).attr('method'),
-        data: $(this).serialize(),
-        success: function(html) {
+      type: "POST",
+      url: location.pathname + "data_points",
+      data: {
+        name: name.value,
+        type: type.value,
+        rating: rating.value,
+        latitude: point.lat(),
+        longitude: point.lng()
+      },
+      success: function (data) {
+      console.log(data);
+      }
+    });
 
-        }
+    $('.locationInputs').toggle("fast");
+  }
+
+  $(() => {
+
+    $("#toggle_list").click(function() {
+      $('.locationInputs').toggle("slow");
+    });
+
+    $("#plus").click(function() {
+      navigator.geolocation.getCurrentPosition(function(loc) {
+        //change position to center of map insted of current location
+        addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
+      })
+    });
+
+    $('#name_form').submit(function(event) {
+      event.preventDefault();
+      $.ajax({
+          url: $(this).attr('action'),
+          type: $(this).attr('method'),
+          data: $(this).serialize(),
+          success: function(html) {
+          }
+      });
     });
   });
-});
-
-var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var labelIndex = 0;
-
-var marker;
-
-function getPosition() {
-  navigator.geolocation.getCurrentPosition(setPosition);
-}
-
-function setPosition(loc) {
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    center: {lat: loc.coords.latitude, lng: loc.coords.longitude}
-  });
-  addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
-
-}
-
-function initMap() {
-  getPosition();
-  var p = new Promise(getPosition);
-  p.then(function(map) {
-    google.maps.event.addListener('click', map, function(event) {
-      addMarker(event.latLng, map);
-
-    });
-  }).catch(function(e) {
-    console.log("Something went wrong", e);
-
-  });
-}
-
-// Adds a marker to the map.
-function addMarker(location, map) {
-
-  marker = new google.maps.Marker({
-    position: location,
-    label: labels[labelIndex++ % labels.length],
-    map: map,
-    draggable: true
-  });
-}
-
-function savePosition() {
-  var name = document.getElementById('name');
-  var type = document.getElementById('type');
-  var rating = document.getElementById('rating');
-
-  var point = marker.getPosition();
-  map.panTo(point);
+  window.initMap = initMap;
+})();
 
 
-// POST data to external database
-  $.ajax({
-    type: "POST",
-    url: location.pathname + "data_points",
-    data: {
-      name: name.value,
-      type: type.value,
-      rating: rating.value,
-      latitude: point.lat(),
-      longitude: point.lng()
-    },
-    success: function (data) {
-    console.log(data);
-    }
-  });
 
-  // save location to local storage
-  // localStorage.setItem('lastLat', point.lat());
-  // localStorage.setItem('lastLng', point.lng());
-
-  // localStorage.setItem('name', name.value);
-  // localStorage.setItem('style', style.value);
-  // localStorage.setItem('rating', rating.value);
-
-
-  $('.locationInputs').toggle("fast");
-};
 
 
 
