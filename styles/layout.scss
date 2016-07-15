@@ -1,5 +1,5 @@
 body {
-  background-color: #EEE;
+  background-color: white;
   h1 {
     color: #244751;
   }
@@ -62,8 +62,25 @@ body {
   margin-left: 20%;
 }
 
-.form {
-  // display: none;
+.locationInputs {
+  display: none;
+  position: static;
+  margin-top: -50px;
+  border: 3px solid rgb(218,26,46);
+  border-radius: 10px;
+  float: right;
+  width: 25%;
+  padding: 10px;
+  margin-right: 5%;
+}
+
+select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+input {
+  margin-top:20px;
 }
 
 img {
