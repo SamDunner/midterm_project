@@ -27,7 +27,6 @@ app.use(express.static("public"));
 // Users JSON api
 app.use("/api/users", usersRoutes(knex));
 
-// Home page
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -38,16 +37,49 @@ app.put("/", (req, res) => {
   });
 
 
-// Main page
-app.get("/main", (req, res) => {
-  res.render("main");
+
+
+app.get("/home", (req, res) => {
+  res.render("home");
+
 });
 
+app.post("/maps", (req, res) => {
+  console.log("/maps")
+  knex("maps")
+  .insert({})
+  .returning("ID")
+  .then((results) => {
+    const id = results[0];
+    res.redirect(`/maps/${id}`);
+  });
+});
+
+//edit map
+app.get("/maps/:id", (req, res) => {
+  res.render("index");
+});
+
+app.get("/maps/:id/data", (req, res) => {
+  res.json({});
+});
+
+
 // Profile page
-app.get("/user/1/profile", (req, res) => {
-  res.render("profile");
+app.get("/user/:userId", (req, res) => {
+  res.render(req.params);
+});
+
+app.get("/user/:userId/list", (req, res) => {
+  res.render("edit");
+});
+
+app.get("/user/:userId/create", (req, res) => {
+  res.render("edit");
 });
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
