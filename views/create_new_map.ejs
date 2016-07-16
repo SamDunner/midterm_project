@@ -6,13 +6,11 @@
     <% include partials/_bootstrap %>
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-
-
-
-
-  </head>
+   </head>
 
   <body>
+  <div class="container-fluid">
+
   <% include partials/_navbar %>
 
     <button class="btn" id="toggle_list" aria-hidden="true" type="button">Save location</button>
@@ -54,7 +52,7 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30sSupKcH81MFrDMtaX_cm21V18JR18Y&callback=initMap"></script>
-
+  </div>
   </body>
 
 </html>
