@@ -29,6 +29,26 @@
   }
 
   // Adds a marker to the map.
+
+  function getPoints() {
+    $.ajax({
+      type: "json",
+      url: location.pathname + "data_points",
+      data: {
+        name: name.value,
+        type: type.value,
+        rating: rating.value,
+        latitude: point.lat(),
+        longitude: point.lng()
+      },
+      success: function (data) {
+      console.log("data");
+      }
+    });
+  }
+
+
+
   function addMarker(location, map) {
     marker = new google.maps.Marker({
       position: location,

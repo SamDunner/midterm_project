@@ -1,5 +1,28 @@
 <nav id="nav-bar">
   <button href="#" class="compose" type="button">
         Compose
-      </button>
+  </button>
+
+
+
+
+  <% if (user) { %>
+  <%= "Current User: " + user.name %>
+  <form action="/logout" method="POST">
+  <input type ="submit" value="Log Out">
+  </form>
+  <% } else { %>
+   <form method="POST" action="/register">
+        <input type="text" name="name" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" value="register">
+  </form>
+  <form method="POST" action="/login">
+        <input type="text" name="name" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" value="sign in">
+  </form>
+<% } %>
 </nav>
+
+

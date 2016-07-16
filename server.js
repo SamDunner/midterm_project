@@ -2,12 +2,14 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT         = process.env.PORT || 8080;
+const ENV          = process.env.ENV || "development";
+const express      = require("express");
+const bodyParser   = require("body-parser");
+const cookieParser = require("cookie-parser");
+const sass         = require("node-sass-middleware");
+const app          = express();
+
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -23,12 +25,70 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(cookieParser());
 
 // Users JSON api
 app.use("/api/users", usersRoutes(knex));
 
+
+const getUserName = function(req, cb) {
+  if (req.cookies["ID"]) {
+    knex("users")
+    .select('name')
+    .where('ID', req.cookies['ID'])
+    .then((results) => {
+      cb(results[0].name);
+    });
+  } else {
+    cb();
+  }
+}
+
 app.get("/", (req, res) => {
-  res.render("home");
+  getUserName(req, (name) => {
+    if (name) {
+      res.render("create", {user: {name: name}});
+    } else {
+      res.render("home", {user: null});
+    }
+  })
+});
+
+//log-in & log-out
+app.post("/register", (req, res) => {
+  knex("users")
+  .insert({name: req.body.name,
+          password: req.body.password})
+  .returning("ID")
+  .then((results) => {
+    if (results.length === 1) {
+      res.cookie("ID", results[0]);
+      res.redirect("/");
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
+
+app.post("/login", (req, res) => {
+  knex("users")
+  .select("ID")
+  .where({name: req.body.name,
+          password: req.body.password})
+  .then((results) => {
+    if (results.length === 1) {
+      res.cookie("ID", results[0].ID);
+      res.redirect("/");
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
+app.post("/logout", (req, res) => {
+  res.clearCookie("ID")
+  res.redirect("/");
 });
 
 //creates new map
@@ -55,7 +115,13 @@ app.put("/maps/:id/name", (req, res) => {
 
 //edit map
 app.get("/maps/:id", (req, res) => {
-  res.render("create_new_map");
+  getUserName(req, (name) => {
+    if (name) {
+      res.render("create_new_map", {user: {name: name}});
+    } else {
+      res.render("home", {user: null});
+    }
+  });
 });
 
 app.get("/maps/:id/data", (req, res) => {
