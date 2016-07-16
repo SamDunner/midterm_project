@@ -35,7 +35,7 @@ const getUserName = function(req, cb) {
   if (req.cookies["ID"]) {
     knex("users")
     .select('name')
-      // .where('ID', req.cookies['ID'])
+    .where('ID', req.cookies['ID'])
     .then((results) => {
     // debug;
       if (results.length === 0) {
@@ -93,14 +93,15 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  res.clearCookie("ID")
+  console.log("test");
+  res.clearCookie("ID");
   res.redirect("/");
 });
 
 //creates new map
 app.post("/maps", (req, res) => {
   knex("maps")
-  .insert({})
+  .insert({user_id: req.cookies['ID']})
   .returning("ID")
   .then((results) => {
     const id = results[0];
