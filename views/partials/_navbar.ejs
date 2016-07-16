@@ -1,12 +1,10 @@
 <nav id="nav-bar">
-  <button href="#" class="compose" type="button">
-        Compose
-  </button>
 
 
-
-
-  <% if (user) { %>
+  <div class="row">
+    <div class="col-md-4">
+    <h5> Not a user? Register here! </h5>
+    <% if (user) { %>
   <%= "Current User: " + user.name %>
   <form action="/logout" method="POST">
   <input type ="submit" value="Log Out">
@@ -17,12 +15,25 @@
         <input type="password" name="password" placeholder="password">
         <input type="submit" value="register">
   </form>
-  <form method="POST" action="/login">
+   <% } %>
+
+</div>
+    <div class="col-md-4"><h1>Mapped-Out </br> <small>all your favourites in one place</small></h1></div>
+
+    <div class="col-md-4">
+
+      <h5> Already a user? Sign in here! </h5>
+      <form method="POST" action="/login">
         <input type="text" name="name" placeholder="username">
         <input type="password" name="password" placeholder="password">
         <input type="submit" value="sign in">
-  </form>
-<% } %>
+      </form>
+  </div>
+
+
+
+
+
 </nav>
 
 
