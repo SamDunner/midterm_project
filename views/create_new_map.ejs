@@ -11,7 +11,7 @@
   <body>
   <div class="container-fluid">
 
-  <% include partials/_navbar %>
+   <% include partials/_navbar_home %>
 
     <button class="btn" id="toggle_list" aria-hidden="true" type="button">Save location</button>
     <div id="plus"  aria-hidden="true">
@@ -53,6 +53,11 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB30sSupKcH81MFrDMtaX_cm21V18JR18Y&callback=initMap"></script>
   </div>
+
+      <form method="DELETE" action="delete" style="margin-bottom:1em">
+        <button type="submit">Delete</button>
+      </form>
+
   </body>
 
 </html>
