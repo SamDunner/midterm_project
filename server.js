@@ -9,7 +9,8 @@ const bodyParser   = require("body-parser");
 const cookieParser = require("cookie-parser");
 const sass         = require("node-sass-middleware");
 const app          = express();
-
+const connect      = require('connect');
+const methodOverride = require('method-override');
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -26,6 +27,7 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 
 // Users JSON api
 app.use("/api/users", usersRoutes(knex));
