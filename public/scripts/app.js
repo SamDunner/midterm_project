@@ -33,6 +33,7 @@
     marker = new google.maps.Marker({
       position: location,
       label: labels[labelIndex++ % labels.length],
+      animation: google.maps.Animation.DROP,
       map: map,
       draggable: true
     });
@@ -69,7 +70,6 @@ marker.addListener('click', function() {
       }
     });
 });
-
   }
 
   function savePosition() {
@@ -129,24 +129,5 @@ marker.addListener('click', function() {
       });
     });
   });
-
-
-
-
   window.initMap = initMap;
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
