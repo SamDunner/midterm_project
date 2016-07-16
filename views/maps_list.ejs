@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Midterm Project</title>
+    <title>Node Skeleton</title>
 
     <% include partials/_bootstrap %>
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
@@ -9,18 +9,17 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
-
-
   </head>
 
   <body>
-  <% include partials/_navbar_home %>
+<% include partials/_navbar_home %>
+  <h1>Places</h1>
 
-  <form action="maps" method="POST" style="margin:150px;">
-    <label for="createMap">CREATE MAP:</label>
-    <input type="submit" value="Submit">
-  </form>
-  <a href="maps"><button class="lists_btn" type="button">Your lists</button></a>
+  <!-- message hidden -->
+  <div id="listMessage" >
+      <p>You have no stored places!</p>
+  </div>
+
 
   </body>
-    </div>
+  </html>

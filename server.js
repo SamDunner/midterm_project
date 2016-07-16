@@ -147,18 +147,12 @@ app.get("/maps/:id/data", (req, res) => {
 });
 
 
-// Profile page
-app.get("/user/:userId", (req, res) => {
-  res.render(req.params);
-});
+// User Profile page NEEDS FIXING
+app.get("/maps", (req, res) => {
+    res.render("maps_list");
+  });
 
-app.get("/user/:userId/list", (req, res) => {
-  res.render("edit");
-});
 
-app.get("/user/:userId/create", (req, res) => {
-  res.render("edit");
-});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
@@ -185,5 +179,6 @@ app.get("/maps/:map_id/data_points", (req, res) => {
     res.json(results);
   });
 });
+
 
 
