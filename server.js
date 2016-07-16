@@ -100,7 +100,7 @@ app.post("/logout", (req, res) => {
 //creates new map
 app.post("/maps", (req, res) => {
   knex("maps")
-  .insert({user_id: res.cookie("ID")})
+  .insert({})
   .returning("ID")
   .then((results) => {
     const id = results[0];

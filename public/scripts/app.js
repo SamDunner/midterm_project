@@ -29,10 +29,33 @@
   }
 
   // Adds a marker to the map.
+  function addMarker(location, map) {
+    marker = new google.maps.Marker({
+      position: location,
+      label: labels[labelIndex++ % labels.length],
+      map: map,
+      draggable: true
+    });
 
-  function getPoints() {
-    $.ajax({
-      type: "json",
+          var contentString = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+          '<div id="bodyContent">'+
+          '<p>INFO BLA BLA BLA BLA</p>'+
+          '</div>'+
+          '</div>';
+
+
+var infowindow = new google.maps.InfoWindow({
+  content: contentString
+});
+
+marker.addListener('click', function() {
+  infowindow.open(map, marker);
+
+   $.ajax({
+      type: "GET",
       url: location.pathname + "data_points",
       data: {
         name: name.value,
@@ -42,20 +65,11 @@
         longitude: point.lng()
       },
       success: function (data) {
-      console.log("data");
+      console.log(data);
       }
     });
-  }
+});
 
-
-
-  function addMarker(location, map) {
-    marker = new google.maps.Marker({
-      position: location,
-      label: labels[labelIndex++ % labels.length],
-      map: map,
-      draggable: true
-    });
   }
 
   function savePosition() {
@@ -82,7 +96,7 @@
         longitude: point.lng()
       },
       success: function (data) {
-      console.log(data.body);
+      console.log(data);
       }
     });
 
@@ -97,7 +111,7 @@
 
     $("#plus").click(function() {
       navigator.geolocation.getCurrentPosition(function(loc) {
-        //change position to center of map insted of current location
+        //change position to center of map insted of current location!!!
         addMarker({lat: loc.coords.latitude, lng: loc.coords.longitude}, map);
       })
     });
@@ -115,18 +129,18 @@
       });
     });
   });
+
+
+
+
   window.initMap = initMap;
 })();
 
-// var contentString = data
 
-// var infowindow = new google.maps.InfoWindow({
-//   content: contentString
-// });
 
-// marker.addListener('click', function() {
-//   infowindow.open(map, marker);
-// });
+
+
+
 
 
 
