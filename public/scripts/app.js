@@ -39,7 +39,8 @@
   }
 
   function savePosition() {
-          console.log("save pos");
+
+    console.log("save pos");
 
     var name = document.getElementById('name');
     var type = document.getElementById('type');
@@ -61,7 +62,7 @@
         longitude: point.lng()
       },
       success: function (data) {
-      console.log(data);
+      console.log(data.body);
       }
     });
 
@@ -81,11 +82,7 @@
       })
     });
 
-
-
-
     $(".btn_submit").click(savePosition);
-
 
     $('#name_form').submit(function(event) {
       event.preventDefault();
@@ -101,7 +98,15 @@
   window.initMap = initMap;
 })();
 
+// var contentString = data
 
+// var infowindow = new google.maps.InfoWindow({
+//   content: contentString
+// });
+
+// marker.addListener('click', function() {
+//   infowindow.open(map, marker);
+// });
 
 
 
