@@ -35,9 +35,15 @@ const getUserName = function(req, cb) {
   if (req.cookies["ID"]) {
     knex("users")
     .select('name')
-    .where('ID', req.cookies['ID'])
+      // .where('ID', req.cookies['ID'])
     .then((results) => {
-      cb(results[0].name);
+    // debug;
+      if (results.length === 0) {
+        console.log("no results found in database")
+      } else {//have some results
+        console.log(results)
+        cb(results[0].name);
+      }
     });
   } else {
     cb();
@@ -93,13 +99,22 @@ app.post("/logout", (req, res) => {
 
 //creates new map
 app.post("/maps", (req, res) => {
-  console.log("/maps")
   knex("maps")
-  .insert({})
+  .insert({user_id: res.cookie("ID")})
   .returning("ID")
   .then((results) => {
     const id = results[0];
     res.redirect(`/maps/${id}/`);
+  });
+});
+
+//delete map
+app.delete("/maps/:id", (req, res) => {
+  knex("maps")
+  .where("ID", req.params.id)
+  .delete()
+  .then((results) => {
+      res.redirect("/");
   });
 });
 
