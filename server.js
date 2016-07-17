@@ -80,6 +80,7 @@ app.get("/", (req, res) => {
 app.post("/register", (req, res) => {
   knex("users")
   .insert({name: req.body.name,
+          email: req.body.email,
           password: req.body.password})
   .returning("ID")
   .then((results) => {
