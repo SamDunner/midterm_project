@@ -172,6 +172,23 @@ app.get("/maps/:id/data", (req, res) => {
   res.json({});
 });
 
+<<<<<<< HEAD
+=======
+
+//list of maps
+app.get("/maps", (req, res) => {
+  getUserName(req, (name) => {
+    if (name) {
+      res.render("maps_list", {user: {name: name}});
+      console.log("test");
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
+
+>>>>>>> dd95c08849a76e88f153cfc15a467b7ba00c3919
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
