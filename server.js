@@ -135,9 +135,9 @@ app.put("/maps/:id/name", (req, res) => {
 app.get("/maps/:id", (req, res) => {
   getUserName(req, (name) => {
     if (name) {
-      res.render("create_new_map", {user: {name: name}});
+      res.render("create_new_map", {user: {name: name}, map: {id: req.params.id}});
     } else {
-      res.render("home", {user: null});
+      res.redirect("/");
     }
   });
 });
@@ -147,10 +147,17 @@ app.get("/maps/:id/data", (req, res) => {
 });
 
 
-// User Profile page NEEDS FIXING
+//list of maps
 app.get("/maps", (req, res) => {
-    res.render("maps_list");
+  getUserName(req, (name) => {
+    if (name) {
+      res.render("maps_list", {user: {name: name}});
+      console.log("test");
+    } else {
+      res.redirect("/");
+    }
   });
+});
 
 
 
