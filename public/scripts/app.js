@@ -71,7 +71,6 @@
         console.log("Canceled");
       }
     });
-    //////////////////////////////////////////////////////////////
 
       //working Ajax request needs to fix incoming data
       $.ajax({
@@ -87,7 +86,6 @@
         }
       })
     });
-    ///////////////////////////////////////////////////////
 
   }
 
@@ -101,9 +99,7 @@
     var point = marker.getPosition();
     map.panTo(point);
 
-// <<<<<<< HEAD
 
-<<<<<<< HEAD
     // POST data to external database
     // $.ajax({
     //   type: "POST",
@@ -120,12 +116,11 @@
     //   }
     // });
 
-// =======
-=======
+
     //POST data to external database
 
     //NOT Working ajax req to post
->>>>>>> 7e5448608f104cbddc9e71927813ba37903cc375
+
     $.ajax({
       type: "POST",
       url: location.pathname + "data_points",
@@ -141,10 +136,6 @@
       console.log(data);
       }
     });
-<<<<<<< HEAD
-// >>>>>>> dd95c08849a76e88f153cfc15a467b7ba00c3919
-=======
->>>>>>> 7e5448608f104cbddc9e71927813ba37903cc375
 
   }
 
