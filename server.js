@@ -172,8 +172,8 @@ app.get("/maps/:id/data", (req, res) => {
   res.json({});
 });
 
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
 
 //list of maps
 app.get("/maps", (req, res) => {
@@ -188,7 +188,7 @@ app.get("/maps", (req, res) => {
 });
 
 
->>>>>>> dd95c08849a76e88f153cfc15a467b7ba00c3919
+// >>>>>>> dd95c08849a76e88f153cfc15a467b7ba00c3919
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });

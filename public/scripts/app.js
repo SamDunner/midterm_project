@@ -87,7 +87,7 @@
     var point = marker.getPosition();
     map.panTo(point);
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
     // POST data to external database
     // $.ajax({
@@ -105,7 +105,7 @@
     //   }
     // });
 
-=======
+// =======
     $.ajax({
       type: "POST",
       url: location.pathname + "data_points",
@@ -120,7 +120,7 @@
       console.log(data);
       }
     });
->>>>>>> dd95c08849a76e88f153cfc15a467b7ba00c3919
+// >>>>>>> dd95c08849a76e88f153cfc15a467b7ba00c3919
 
     $('.locationInputs').toggle("fast");
   }
