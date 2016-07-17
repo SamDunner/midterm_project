@@ -162,40 +162,25 @@ app.get("/maps/:id/data", (req, res) => {
   res.json({});
 });
 
-<<<<<<< HEAD
-// <<<<<<< HEAD
-// =======
-=======
-// // <<<<<<< HEAD
-// // =======
+//list of maps
+app.get("/maps", (req, res) => {
+  getUserName(req, (name) => {
+    if (name) {
+      res.render("maps_list", {user: {name: name}});
+      console.log("test");
+    } else {
+      res.redirect("/");
+    }
+  });
+});
 
-// //list of maps
-// app.get("/maps", (req, res) => {
-//   getUserName(req, (name) => {
-//     if (name) {
-//       res.render("maps_list", {user: {name: name}});
-//       console.log("test");
-//     } else {
-//       res.redirect("/");
-//     }
-//   });
-// });
-// // >>>>>>> dd95c08849a76e88f153cfc15a467b7ba00c3919
->>>>>>> 7e5448608f104cbddc9e71927813ba37903cc375
-
-
-
-<<<<<<< HEAD
-// >>>>>>> dd95c08849a76e88f153cfc15a467b7ba00c3919
-=======
->>>>>>> 7e5448608f104cbddc9e71927813ba37903cc375
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
 
 
 app.post("/maps/:map_id/data_points", (req, res) => {
-  console.log("data_points" req.body)
+  console.log("data_points", req.body)
   var data_point = req.body;
   data_point.map_id = req.params.map_id;
   knex("data_points")

@@ -19,7 +19,7 @@
     </div>
 
     <form action="name" style="margin:150px" method="PUT" id="name_form">
-      <input type="text" name="name">
+      <input type="text" name="name" placeholder="Name your map!">
       <input type="submit" value="Name your Map!">
     </form>
 
@@ -57,6 +57,9 @@
       <form method="POST" action="/maps/<%= map.id %>?_method=DELETE" style="margin-bottom:1em">
         <button type="submit">Delete Map</button>
       </form>
+
+     <a href="/"><button class="lists_btn" type="button">Home</button></a>
+
 
   </body>
 
