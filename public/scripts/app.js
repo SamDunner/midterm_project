@@ -92,6 +92,7 @@
     var point = marker.getPosition();
     map.panTo(point);
 
+
     // POST data to external database
     // $.ajax({
     //   type: "POST",
@@ -107,6 +108,8 @@
     //   console.log(data);
     //   }
     // });
+
+
     $('.locationInputs').toggle("fast");
   }
 
@@ -143,3 +146,11 @@
   });
   window.initMap = initMap;
 })();
+
+// $.ajax({
+//   url: '/maps',
+//   method: 'GET',
+//   success: () => {
+//             console.log('successful request');
+//           }
+// });

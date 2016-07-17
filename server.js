@@ -52,6 +52,20 @@ const getUserName = function(req, cb) {
   }
 }
 
+// const getMaps = function(req, cb) {
+//     knex("maps")
+//     .select('*')
+//     .then((results) => {
+//     // debug;
+//       if (results.length === 0) {
+//         console.log("no results found in database")
+//       } else {//have some results
+//         console.log(results)
+//         cb(results[0].name);
+//       }
+//     });
+// }
+
 app.get("/", (req, res) => {
   getUserName(req, (name) => {
     if (name) {
@@ -100,6 +114,18 @@ app.post("/logout", (req, res) => {
   res.redirect("/");
 });
 
+//list of maps
+app.get("/maps", (req, res) => {
+  getUserName(req, (name) => {
+    if (name) {
+      res.render("maps_list", {user: {name: name}});
+      console.log("test");
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
 //creates new map
 app.post("/maps", (req, res) => {
   knex("maps")
@@ -145,21 +171,6 @@ app.get("/maps/:id", (req, res) => {
 app.get("/maps/:id/data", (req, res) => {
   res.json({});
 });
-
-
-//list of maps
-app.get("/maps", (req, res) => {
-  getUserName(req, (name) => {
-    if (name) {
-      res.render("maps_list", {user: {name: name}});
-      console.log("test");
-    } else {
-      res.redirect("/");
-    }
-  });
-});
-
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
