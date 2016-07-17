@@ -4,18 +4,19 @@
   var labelIndex = 0;
   var marker;
   var infowindow;
-  var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-        '<div id="windowContentContent">'+
-        '<p>INFO BLA BLA BLA BLA</p>'+
-        '<button class="edit_btn" type="button">Edit</button>'+
-        '<button class="delete_btn" type="button">Delete</button>'+
-        '</div>'+
-        '</div>';
-
-
+  var result = {};
+  var contentString = JSON.stringify(result);
+        // '<div id="content">'+
+        // '<div id="siteNotice">'+
+        // '</div>'+
+        // '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+        // '<div id="windowContentContent">'+
+        // //Fix widow content!!!!!!!!!
+        // '<% include ./maps/:map_id/data_points %>'+
+        // '<button class="edit_btn" type="button">Edit</button>'+
+        // '<button class="delete_btn" type="button">Delete</button>'+
+        // '</div>'+
+        // '</div>';
 
 
   function getPosition() {
@@ -58,7 +59,7 @@
     marker.addListener('click', function() {
     infowindow.open(map, marker);
 
-     //Working edit/delete buttons needs rendering
+     //Working edit/delete buttons needs rendering new content
      $("button.edit_btn").click(function() {
       console.log("edit render");
     });
@@ -76,11 +77,17 @@
       //working Ajax request needs to fix incoming data
       $.ajax({
         type: "GET",
-        url: location.pathname + "data_points",
+        url:  "data_points",
         data: JSON,
         success: function (data, textStatus) {
-          console.log("get window data");
-          $('windowContentContent').append(data);
+          console.log(data);
+          console.log("hey");
+          data = result;
+          for (var i = 0; i < data.length; i++) {
+          }
+          // console.log(array);
+          $('#windowContentContent').append(result);
+          return result;
         },
         error: function() {
           console.log("error getting data");
@@ -91,9 +98,6 @@
 
   }
 
-
-
-
   function savePosition() {
     var name = document.getElementById('name');
     var type = document.getElementById('type');
@@ -101,11 +105,9 @@
     var point = marker.getPosition();
     map.panTo(point);
 
-// <<<<<<< HEAD
 
     //POST data to external database
-
-    //NOT Working ajax req to post
+    //Working ajax req to post
     $.ajax({
       type: "POST",
       url: location.pathname + "data_points",
@@ -121,16 +123,12 @@
       console.log(data);
       }
     });
-
   }
 
   $(() => {
     $("#toggle_list").click(function() {
       $('.locationInputs').toggle("fast");
     });
-
-
-
 
     $("#plus").click(function() {
       navigator.geolocation.getCurrentPosition(function(loc) {
@@ -154,5 +152,3 @@
   });
   window.initMap = initMap;
 })();
-
-

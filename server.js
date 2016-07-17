@@ -186,7 +186,7 @@ app.listen(PORT, () => {
 
 
 app.post("/maps/:map_id/data_points", (req, res) => {
-  console.log("data_points" req.body)
+  console.log("data_points", req.body)
   var data_point = req.body;
   data_point.map_id = req.params.map_id;
   knex("data_points")
@@ -205,6 +205,3 @@ app.get("/maps/:map_id/data_points", (req, res) => {
     res.json(results);
   });
 });
-
-
-
