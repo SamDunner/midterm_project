@@ -50,19 +50,14 @@
       content: contentString
     });
 
+    //fix window info to dispaly actual data from points
     marker.addListener('click', function() {
       infowindow.open(map, marker);
 
        $.ajax({
           type: "GET",
           url: location.pathname + "data_points",
-          data: {
-            name: name.value,
-            type: type.value,
-            rating: rating.value,
-            latitude: point.lat(),
-            longitude: point.lng()
-          },
+          data: data,
           success: function (data) {
           console.log(data);
           },
@@ -92,21 +87,21 @@
     var point = marker.getPosition();
     map.panTo(point);
 
-    // POST data to external database
-    // $.ajax({
-    //   type: "POST",
-    //   url: location.pathname + "data_points",
-    //   data: {
-    //     name: name.value,
-    //     type: type.value,
-    //     rating: rating.value,
-    //     latitude: point.lat(),
-    //     longitude: point.lng()
-    //   },
-    //   success: function (data) {
-    //   console.log(data);
-    //   }
-    // });
+    $.ajax({
+      type: "POST",
+      url: location.pathname + "data_points",
+      data: {
+        name: name.value,
+        type: type.value,
+        rating: rating.value,
+        latitude: point.lat(),
+        longitude: point.lng()
+      },
+      success: function (data) {
+      console.log(data);
+      }
+    });
+
     $('.locationInputs').toggle("fast");
   }
 
@@ -115,11 +110,12 @@
       $('.locationInputs').toggle("slow");
     });
 
+    //fix edit and delete bottons
     $(".edit_btn").click(function() {
       console.log("edit")
     });
-
     $(".delete_btn").click(confirmDelete);
+
 
     $("#plus").click(function() {
       navigator.geolocation.getCurrentPosition(function(loc) {
