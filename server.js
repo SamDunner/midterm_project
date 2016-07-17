@@ -9,7 +9,8 @@ const bodyParser   = require("body-parser");
 const cookieParser = require("cookie-parser");
 const sass         = require("node-sass-middleware");
 const app          = express();
-
+const connect      = require('connect');
+const methodOverride = require('method-override');
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -26,6 +27,7 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 
 // Users JSON api
 app.use("/api/users", usersRoutes(knex));
@@ -133,9 +135,9 @@ app.put("/maps/:id/name", (req, res) => {
 app.get("/maps/:id", (req, res) => {
   getUserName(req, (name) => {
     if (name) {
-      res.render("create_new_map", {user: {name: name}});
+      res.render("create_new_map", {user: {name: name}, map: {id: req.params.id}});
     } else {
-      res.render("home", {user: null});
+      res.redirect("/");
     }
   });
 });
@@ -145,10 +147,17 @@ app.get("/maps/:id/data", (req, res) => {
 });
 
 
-// User Profile page NEEDS FIXING
+//list of maps
 app.get("/maps", (req, res) => {
-    res.render("maps_list");
+  getUserName(req, (name) => {
+    if (name) {
+      res.render("maps_list", {user: {name: name}});
+      console.log("test");
+    } else {
+      res.redirect("/");
+    }
   });
+});
 
 
 app.listen(PORT, () => {
