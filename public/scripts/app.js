@@ -8,12 +8,15 @@
         '<div id="siteNotice">'+
         '</div>'+
         '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-        '<div id="bodyContent">'+
+        '<div id="windowContentContent">'+
         '<p>INFO BLA BLA BLA BLA</p>'+
         '<button class="edit_btn" type="button">Edit</button>'+
         '<button class="delete_btn" type="button">Delete</button>'+
         '</div>'+
         '</div>';
+
+
+
 
   function getPosition() {
     navigator.geolocation.getCurrentPosition(setPosition);
@@ -46,66 +49,63 @@
       draggable: true
     });
 
+
+    //fix window info to dispaly actual data from points
     infowindow = new google.maps.InfoWindow({
       content: contentString
     });
 
-    //fix window info to dispaly actual data from points
     marker.addListener('click', function() {
-      infowindow.open(map, marker);
+    infowindow.open(map, marker);
 
-       $.ajax({
-          type: "GET",
-          url: location.pathname + "data_points",
-          data: data,
-          success: function (data) {
-          console.log(data);
-          },
-          error: function (data) {
-            console.log(data)
-          }
-      });
+     //Working edit/delete buttons needs rendering
+     $("button.edit_btn").click(function() {
+      console.log("edit render");
     });
+
+     $(".delete_btn").click(function() {
+      var r = confirm("Are you sure?");
+      if (r == true) {
+        console.log("Point deleted")
+      } else {
+        console.log("Canceled");
+      }
+    });
+    //////////////////////////////////////////////////////////////
+
+      //working Ajax request needs to fix incoming data
+      $.ajax({
+        type: "GET",
+        url: location.pathname + "data_points",
+        data: JSON,
+        success: function (data, textStatus) {
+          console.log("get window data");
+          $('windowContentContent').append(data);
+        },
+        error: function() {
+          console.log("error getting data");
+        }
+      })
+    });
+    ///////////////////////////////////////////////////////
+
   }
-  //Fix promt buttons!!!!
-  function confirmDelete() {
-    var x;
-    console.log("delete")
-    if (confirm("Press a button!") == true) {
-        x = "You pressed OK!";
-    } else {
-        x = "You pressed Cancel!";
-    }
-  }
+
+
+
 
   function savePosition() {
-    console.log("save pos");
-
     var name = document.getElementById('name');
     var type = document.getElementById('type');
     var rating = document.getElementById('rating');
     var point = marker.getPosition();
     map.panTo(point);
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
-    // POST data to external database
-    // $.ajax({
-    //   type: "POST",
-    //   url: location.pathname + "data_points",
-    //   data: {
-    //     name: name.value,
-    //     type: type.value,
-    //     rating: rating.value,
-    //     latitude: point.lat(),
-    //     longitude: point.lng()
-    //   },
-    //   success: function (data) {
-    //   console.log(data);
-    //   }
-    // });
+    //POST data to external database
 
-=======
+    //NOT Working ajax req to post
     $.ajax({
       type: "POST",
       url: location.pathname + "data_points",
@@ -117,24 +117,19 @@
         longitude: point.lng()
       },
       success: function (data) {
+      console.log("Successful data post")
       console.log(data);
       }
     });
->>>>>>> dd95c08849a76e88f153cfc15a467b7ba00c3919
 
-    $('.locationInputs').toggle("fast");
   }
 
   $(() => {
     $("#toggle_list").click(function() {
-      $('.locationInputs').toggle("slow");
+      $('.locationInputs').toggle("fast");
     });
 
-    //fix edit and delete bottons
-    $(".edit_btn").click(function() {
-      console.log("edit")
-    });
-    $(".delete_btn").click(confirmDelete);
+
 
 
     $("#plus").click(function() {
@@ -160,10 +155,4 @@
   window.initMap = initMap;
 })();
 
-// $.ajax({
-//   url: '/maps',
-//   method: 'GET',
-//   success: () => {
-//             console.log('successful request');
-//           }
-// });
+
