@@ -27,11 +27,11 @@ body {
 @media (min-width: 1000px) {
   #map {
   height: 700px;
-  width: 700px;
+  width: 900px;
   padding: 0;
   display: block;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 110px;
   margin-bottom: 100px;
   border-radius: 25px;
   z-index: 1;
@@ -45,7 +45,7 @@ body {
   padding: 0;
   display: block;
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: 110px;
   margin-bottom: 100px;
   border-radius: 25px;
   z-index: 1;
@@ -59,7 +59,7 @@ body {
   padding: 0;
   display: block;
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: 110px;
   margin-bottom: 100px;
   border-radius: 25px;
   z-index: 1;
@@ -88,7 +88,7 @@ body {
   padding: 70px;
   border: 2px solid rgb(218,26,46);
   border-radius: 30px;
-  box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 1px 1px 2px 2px #ccc;
   z-index: 9999;
 }
 
@@ -106,8 +106,8 @@ input {
 #plus {
   position: absolute;
   float: right;
-  margin-left: 74%;
-  margin-top: 700px;
+  margin-left: 76%;
+  margin-top: 600px;
   // width: 150px;
   // height: 150px;
   z-index: 999;
@@ -165,7 +165,7 @@ button#toggle_list {
 }
 
 button.btn.btn-danger {
-  margin-top: 800px;
+  margin-top: 820px;
   margin-left: 47%;
 }
 
@@ -174,11 +174,12 @@ button.lists_btn.btn-primary.btn-lg {
   margin-top: -700px;
   margin-left: 150px;
   background-color: #4527A0;
+  z-index: 9999;
 }
 
 input.btn.btn-link.btn-lg {
   position: absolute;
-  margin-top: 10px;
+  margin-top: -8%;
   margin-left: 40%;
   float: right;
   color: #D1C4E9;
@@ -197,6 +198,7 @@ form#name_form {
   position: relative;
   margin-top: -200px;
   margin-bottom: 150px;
+  z-index: 9999;
 }
 
 img#logo {
