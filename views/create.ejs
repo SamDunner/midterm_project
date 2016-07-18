@@ -14,13 +14,18 @@
   </head>
 
   <body>
-  <% include partials/_navbar_home %>
 
+  <div class="page-header">
+  <% include partials/_navbar_home %>
+  </div>
+  <div class="container">
   <form action="maps" method="POST" style="margin:150px;">
     <label for="createMap">CREATE MAP:</label>
-    <input type="submit" value="Submit">
+    <input type="submit" class="btn btn-default btn-lg" value="Submit">
   </form>
-  <a href="maps"><button class="lists_btn" type="button">Your lists</button></a>
 
+
+   <a href="maps"><button class="lists_btn btn-info" type="button">Your lists</button></a>
+  </div>
   </body>
-    </div>
+
