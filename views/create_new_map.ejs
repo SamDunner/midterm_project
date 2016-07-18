@@ -4,23 +4,16 @@
     <title>Node Skeleton</title>
     <% include partials/_bootstrap %>
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <% "fa fa-pencil-square-o" %>
    </head>
 
   <body>
-
+    <div class="page-header">
      <% include partials/_navbar_home %>
-
-     <div class="container">
-      <button class="btn btn-primary btn-lg" id="toggle_list" aria-hidden="true" type="button">Save location</button>
-      <div id="plus"  aria-hidden="true">
-        <img  src="/images/plus.svg" >
-      </div>
     </div>
 
-    <form action="name" style="margin:150px" method="PUT" id="name_form">
-      <input type="text" name="name" placeholder="Name your map!">
-      <input type="submit" class="btn-default btn-info btn-sm" value="Name your Map!">
-    </form>
+
+
 
     <div class="locationInputs">
       <h1>Save location</h1>
@@ -41,18 +34,28 @@
         <option value="fastFood">Fast food</option>
         <option value="other">Other</option>
       </select>
-        <button class="btn_submit btn-success btn-sm" type="button" aria-hidden="true">Submit</button>
+        <button class="btn_submit btn-success btn-sm" type="button" aria-hidden="true">Save</button>
     </div>
 
-    <a href="/"><button class="lists_btn btn-primary btn-lg" type="button">Home</button></a>
-    <form method="POST" action="/maps/<%= map.id %>?_method=DELETE" style="margin-bottom:1em">
+    <button class="btn btn-primary btn-success btn-lg" id="toggle_list" aria-hidden="true" type="button">Save location</button>
+      <div id="plus"  aria-hidden="true">
+        <img  src="/images/plus.svg" >
+      </div>
+       <form method="POST" action="/maps/<%= map.id %>?_method=DELETE" style="margin-bottom:1em">
       <button type="submit" class="btn btn-danger">Delete Map</button>
     </form>
+
+    <form action="name"  method="PUT" id="name_form">
+      <input type="text" name="name" placeholder="Name your map!">
+      <input type="submit" class="btn-default btn-info btn-sm" value="...">
+    </form>
+
+
 
     <div id="map"></div>
     <div id="capture"></div>
 
-
+ <a href="/"><button class="lists_btn btn-primary btn-lg" type="button">Home</button></a>
 
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>

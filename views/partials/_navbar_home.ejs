@@ -2,18 +2,18 @@
 <div class="page-header">
 <nav id="nav-bar">
 
-
+<div lass="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="cal-lg-3 cal-md-3 cal-sm-6 cal-xs-3">
+    <h1>Mapped-Out </br> <small>All your favourites in one place</small></h1>
+    </div>
 
-</div>
-    <div class="col-md-4"><h1>Mapped-Out </br> <small>all your favourites in one place</small></h1></div>
-
-  <div class="col-md-4" id="login">
+  <div  id="login">
   <% if (user) { %>
-  <%= "User: " + user.name %>
+  <%= "Hello " + user.name %>
   <form action="/logout" method="POST">
   <input type ="submit" class="btn btn-link btn-lg" value="Log Out">
+
   </form>
   </div>
   <% } else { %>

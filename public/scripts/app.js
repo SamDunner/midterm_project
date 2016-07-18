@@ -118,6 +118,8 @@
       $('.locationInputs').toggle("fast");
     });
 
+
+
     $("#plus").click(function() {
       navigator.geolocation.getCurrentPosition(function(loc) {
         //change position to center of map insted of current location!!!

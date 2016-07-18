@@ -76,14 +76,15 @@ body {
 
 .locationInputs {
   display: none;
+  background-color: white;
   position: absolute;
-  float: right;
-  margin-top: 400px;
-  width: 25%;
+  margin-top: 600px;
+  margin-left: 35%;
+  width: 30%;
   padding: 20px;
-  border: 3px solid rgb(218,26,46);
-  border-radius: 10px;
-  margin-left: 70%;
+  border: 2px solid rgb(218,26,46);
+  border-radius: 30px;
+  //margin-left: 70%;
   z-index: 9999;
 }
 
@@ -99,8 +100,8 @@ input {
 img {
   position: absolute;
   float: right;
-  margin-right: 80%;
-  margin-top: 900px;
+  margin-left: 72%;
+  margin-top: 700px;
   width: 150px;
   height: 150px;
   z-index: 1;
@@ -132,3 +133,48 @@ input.btn.btn-default.btn-sm {
   margin-top: 18px;
   position: absolute;
 }
+
+input.btn.btn-default.btn-lg {
+  position: inherit;
+  float: right;
+  margin-left: 60%;
+  }
+
+button#toggle_list {
+  position: absolute;
+  float: right;
+  margin-left: 60%;
+  margin-top: 180px;
+  padding: 20px;
+  border-radius: 20px;
+  z-index: 9999;
+}
+
+button.btn.btn-danger {
+  margin-top: 1000px;
+  margin-left: 47%;
+}
+
+button.lists_btn.btn-primary.btn-lg {
+  position: absolute;
+  margin-top: -1200px;
+  margin-left: 100px;
+}
+
+input.btn.btn-link.btn-lg {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 40%;
+  float: right;
+}
+
+button.btn.btn-primary.btn-lg {
+  margin-left: 80%;
+  margin-top: 40%;
+}
+
+div.btn-group.btn-group-lg {
+  margin-left: 35%;
+}
+
+
