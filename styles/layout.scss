@@ -1,8 +1,11 @@
 body {
-  background-color: white;
+  background-color: #9575CD;
   font-size: 20px;
   h1 {
-    color: #244751;
+    color: white;
+  }
+  small {
+    color: white;
   }
 }
 
@@ -10,12 +13,12 @@ body {
   background-color: white;
 }
 
+
 #nav-bar {
   height: 120px;
   width: 100%;
-  top: 0;
-  background-color: white;
-  color: black;
+  background-color: #9575CD;
+  color: white;
   padding: 0 2em;
   position: fixed;
   z-index: 2;
@@ -23,13 +26,13 @@ body {
 
 @media (min-width: 1000px) {
   #map {
-  height: 800px;
-  width: 800px;
+  height: 700px;
+  width: 700px;
   padding: 0;
   display: block;
   margin: 0 auto;
   margin-top: 100px;
-  margin-bottom: 300px;
+  margin-bottom: 100px;
   border-radius: 25px;
   z-index: 1;
   }
@@ -37,13 +40,13 @@ body {
 
 @media (max-width: 999px) {
   #map {
-  height: 600px;
-  width: 600px;
+  height: 500px;
+  width: 500px;
   padding: 0;
   display: block;
   margin: 0 auto;
   margin-top: 200px;
-  margin-bottom: 300px;
+  margin-bottom: 100px;
   border-radius: 25px;
   z-index: 1;
   }
@@ -57,7 +60,7 @@ body {
   display: block;
   margin: 0 auto;
   margin-top: 200px;
-  margin-bottom: 300px;
+  margin-bottom: 100px;
   border-radius: 25px;
   z-index: 1;
   }
@@ -96,6 +99,8 @@ select {
 
 input {
   margin-top:20px;
+  background-color: none;
+  color: darkgray;
 }
 
 #plus {
@@ -103,12 +108,17 @@ input {
   float: right;
   margin-left: 74%;
   margin-top: 700px;
-  width: 150px;
-  height: 150px;
+  // width: 150px;
+  // height: 150px;
   z-index: 999;
   cursor: pointer;
-   border-radius: 50%;
-  box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+#plus:active {
+  transition: 2em;
+  opacity: 0.2;
+  width:130px;
+  height:130px;
 }
 
 map {
@@ -116,12 +126,7 @@ map {
 }
 
 
-#plus:active {
-  transition: 2em;
-  opacity: 0.8;
-  width:130px;
-  height:130px;
-}
+
 
 #nav-bar h1 {
   text-align: center;
@@ -160,14 +165,15 @@ button#toggle_list {
 }
 
 button.btn.btn-danger {
-  margin-top: 900px;
+  margin-top: 800px;
   margin-left: 47%;
 }
 
 button.lists_btn.btn-primary.btn-lg {
   position: absolute;
-  margin-top: 500px;
-  margin-left: 100px;
+  margin-top: -700px;
+  margin-left: 150px;
+  background-color: #4527A0;
 }
 
 input.btn.btn-link.btn-lg {
@@ -175,6 +181,7 @@ input.btn.btn-link.btn-lg {
   margin-top: 10px;
   margin-left: 40%;
   float: right;
+  color: #D1C4E9;
 }
 
 button.btn.btn-primary.btn-lg {
@@ -188,10 +195,29 @@ div.btn-group.btn-group-lg {
 
 form#name_form {
   position: relative;
-  margin-top: -1100px;
+  margin-top: -200px;
+  margin-bottom: 150px;
 }
 
 img#logo {
   width: 500px;
 }
+
+#login {
+  background-color: #9575CD;
+}
+
+input.btn.btn-default.btn-sm {
+  background-color: #9575CD;
+  color: white;
+  padding: 10px;
+}
+
+input.btn.btn-default.btn-lg {
+  background-color: #9575CD;
+  color: white;
+  padding: 10px;
+  }
+
+
 

@@ -37,9 +37,9 @@
         <button class="btn_submit btn-success btn-sm" type="button" aria-hidden="true">Save</button>
     </div>
 
-    <button class="btn btn-primary btn-success btn-lg" id="toggle_list" aria-hidden="true" type="button">Save location</button>
+    <button class="btn btn-primary p btn-lg" id="toggle_list" aria-hidden="true" type="button">Save location</button>
       <div id="plus" class="plus" aria-hidden="true">
-        <img  src="/images/plus.svg" >
+        <img  src="/images/plus1.svg" >
       </div>
        <form method="POST" action="/maps/<%= map.id %>?_method=DELETE" style="margin-bottom:1em">
       <button type="submit" class="btn btn-danger">Delete Map</button>
@@ -53,7 +53,7 @@
     <div id="capture"></div>
 
         <form action="name"  method="PUT" id="name_form">
-      <input type="text" name="name" placeholder="Name your map!">
+      <input type="text" name="name" placeholder="Name your map!" style="margin-left:10%;">
       <input type="submit" class="btn-default btn-info btn-sm" value="...">
     </form>
 
