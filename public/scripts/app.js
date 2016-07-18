@@ -40,8 +40,17 @@
     marker.addListener('click', function() {
 
 
-       //Working edit/delete buttons needs rendering new content
-       $("button.edit_btn").click(function() {
+
+      //working Ajax request needs to fix incoming data
+      $.ajax({
+        type: "GET",
+        url:  "data_points",
+        data: JSON,
+        success: function (data, textStatus) {
+          console.log(data);
+
+                    //Working edit/delete buttons needs rendering new content
+       $(".edit_btn").click(function() {
         console.log("edit render");
       });
 
@@ -54,15 +63,8 @@
         }
       });
       //////////////////////////////////////////////////////////////
-
-      //working Ajax request needs to fix incoming data
-      $.ajax({
-        type: "GET",
-        url:  "data_points",
-        data: JSON,
-        success: function (data, textStatus) {
-          console.log(data);
-          var contentWindowContent = 'the name is: ' + data[0].name;
+          var contentWindowContent = 'the name is: ' + data[0].name + '\n<button class="edit_btn btn-ptimary-sm" type="button">Edit</button>'+
+        '<button class="delete_btn btn-ptimary-sm" type="button">Delete</button>';
           console.log(contentWindowContent)
 
 
@@ -71,6 +73,8 @@
             content: contentWindowContent
           });
           infowindow.open(map, marker);
+
+
 
 
           // console.log(data);

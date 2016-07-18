@@ -1,10 +1,12 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <div class="page-header">
 <nav id="nav-bar">
 
 <div lass="container">
   <div class="row">
     <div class="cal-lg-3 cal-md-3 cal-sm-6 cal-xs-3">
+
     <h1>Mapped-Out </br> <small>All your favourites in one place</small></h1>
     </div>
 
@@ -13,7 +15,6 @@
   <%= "Hello " + user.name %>
   <form action="/logout" method="POST">
   <input type ="submit" class="btn btn-link btn-lg" value="Log Out">
-
   </form>
   </div>
   <% } else { %>
@@ -30,6 +31,7 @@
         <input type="submit" class="btn btn-default btn-sm" value="sign in">
   </form>
   </div>
+  <img id="logo" src="/images/mapped-out.svg">
 <% } %>
   </div>
   </div>

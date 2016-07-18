@@ -1,5 +1,6 @@
 body {
   background-color: white;
+  font-size: 20px;
   h1 {
     color: #244751;
   }
@@ -78,13 +79,13 @@ body {
   display: none;
   background-color: white;
   position: absolute;
-  margin-top: 600px;
+  margin-top: 500px;
   margin-left: 35%;
   width: 30%;
-  padding: 20px;
+  padding: 70px;
   border: 2px solid rgb(218,26,46);
   border-radius: 30px;
-  //margin-left: 70%;
+  box-shadow: 3px 3px 5px 6px #ccc;
   z-index: 9999;
 }
 
@@ -97,22 +98,29 @@ input {
   margin-top:20px;
 }
 
-img {
+#plus {
   position: absolute;
   float: right;
-  margin-left: 72%;
+  margin-left: 74%;
   margin-top: 700px;
   width: 150px;
   height: 150px;
   z-index: 999;
   cursor: pointer;
+   border-radius: 50%;
+  box-shadow: 3px 3px 5px 6px #ccc;
 }
 
-img:active {
+map {
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+
+#plus:active {
   transition: 2em;
   opacity: 0.8;
-  width:112px;
-  height:112px;
+  width:130px;
+  height:130px;
 }
 
 #nav-bar h1 {
@@ -144,20 +152,21 @@ button#toggle_list {
   position: absolute;
   float: right;
   margin-left: 60%;
-  margin-top: 180px;
+  margin-top: 120px;
   padding: 20px;
   border-radius: 20px;
+  box-shadow: 1px 1px 2px 2px #ccc;
   z-index: 9999;
 }
 
 button.btn.btn-danger {
-  margin-top: 1000px;
+  margin-top: 900px;
   margin-left: 47%;
 }
 
 button.lists_btn.btn-primary.btn-lg {
   position: absolute;
-  margin-top: -1200px;
+  margin-top: 500px;
   margin-left: 100px;
 }
 
@@ -170,11 +179,19 @@ input.btn.btn-link.btn-lg {
 
 button.btn.btn-primary.btn-lg {
   margin-left: 80%;
-  margin-top: 40%;
+  margin-top: 42%;
 }
 
 div.btn-group.btn-group-lg {
   margin-left: 35%;
 }
 
+form#name_form {
+  position: relative;
+  margin-top: -1100px;
+}
+
+img#logo {
+  width: 500px;
+}
 
