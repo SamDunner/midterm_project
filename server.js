@@ -159,7 +159,7 @@ app.get("/maps/:id", (req, res) => {
   });
 });
 
-app.get("/maps/:id/data", (req, res) => {
+app.get("/maps/:map_id/data_points/:id", (req, res) => {
   res.json({});
 });
 
