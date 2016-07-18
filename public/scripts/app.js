@@ -5,19 +5,6 @@
   var marker;
   var infowindow;
   var result = {};
-  var contentString = JSON.stringify(result);
-        // '<div id="content">'+
-        // '<div id="siteNotice">'+
-        // '</div>'+
-        // '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-        // '<div id="windowContentContent">'+
-        // //Fix widow content!!!!!!!!!
-        // '<% include ./maps/:map_id/data_points %>'+
-        // '<button class="edit_btn" type="button">Edit</button>'+
-        // '<button class="delete_btn" type="button">Delete</button>'+
-        // '</div>'+
-        // '</div>';
-
 
   function getPosition() {
     navigator.geolocation.getCurrentPosition(setPosition);
@@ -50,29 +37,23 @@
       draggable: true
     });
 
-
-    //fix window info to dispaly actual data from points
-    infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-
     marker.addListener('click', function() {
-    infowindow.open(map, marker);
 
-     //Working edit/delete buttons needs rendering new content
-     $("button.edit_btn").click(function() {
-      console.log("edit render");
-    });
 
-     $(".delete_btn").click(function() {
-      var r = confirm("Are you sure?");
-      if (r == true) {
-        console.log("Point deleted")
-      } else {
-        console.log("Canceled");
-      }
-    });
-    //////////////////////////////////////////////////////////////
+       //Working edit/delete buttons needs rendering new content
+       $("button.edit_btn").click(function() {
+        console.log("edit render");
+      });
+
+       $(".delete_btn").click(function() {
+        var r = confirm("Are you sure?");
+        if (r == true) {
+          console.log("Point deleted")
+        } else {
+          console.log("Canceled");
+        }
+      });
+      //////////////////////////////////////////////////////////////
 
       //working Ajax request needs to fix incoming data
       $.ajax({
@@ -81,13 +62,20 @@
         data: JSON,
         success: function (data, textStatus) {
           console.log(data);
-          console.log("hey");
-          data = result;
-          for (var i = 0; i < data.length; i++) {
-          }
-          // console.log(array);
-          $('#windowContentContent').append(result);
-          return result;
+          var contentWindowContent = 'the name is: ' + data[0].name;
+          console.log(contentWindowContent)
+
+
+          //fix window info to dispaly actual data from points
+          infowindow = new google.maps.InfoWindow({
+            content: contentWindowContent
+          });
+          infowindow.open(map, marker);
+
+
+          // console.log(data);
+          // $('#windowContentContent').append(data);
+          // return data;
         },
         error: function() {
           console.log("error getting data");
