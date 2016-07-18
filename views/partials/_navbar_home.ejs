@@ -9,27 +9,28 @@
 </div>
     <div class="col-md-4"><h1>Mapped-Out </br> <small>all your favourites in one place</small></h1></div>
 
-    <div class="col-md-4">
-
+  <div class="col-md-4" id="login">
   <% if (user) { %>
-  <%= "Current User: " + user.name %>
+  <%= "User: " + user.name %>
   <form action="/logout" method="POST">
   <input type ="submit" class="btn btn-link btn-lg" value="Log Out">
   </form>
+  </div>
   <% } else { %>
    <form method="POST" action="/register">
         <input type="text" name="name" placeholder="username">
         <input type="text" name="email" placeholder="email address">
         <input type="password" name="password" placeholder="password">
-        <input type="submit"  value="register">
+        <input type="submit" class="btn btn-default btn-sm" value="register">
   </form>
+  <div class="col-md-12">
   <form method="POST" action="/login">
         <input type="text" name="name" placeholder="username">
         <input type="password" name="password" placeholder="password">
         <input type="submit" class="btn btn-default btn-sm" value="sign in">
   </form>
+  </div>
 <% } %>
-
   </div>
   </div>
 </nav>
